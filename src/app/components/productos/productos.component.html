@@ -1,0 +1,133 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <form [formGroup]="frmProducto" *ngIf="esAlta">
+        <div class="row">
+          <div class="col-3">
+            <label class="col-form-label" for="ProductoNombre"
+              >Nombre Producto</label
+            >
+          </div>
+          <div class="col-9">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="ProductoNombre"
+            />
+            <div
+              class="validacion"
+              *ngIf="(frmProducto.controls.ProductoNombre.touched || submitted) && frmProducto.controls.ProductoNombre.errors?.required"
+            >
+              Dato Requerido!
+            </div>
+            <div
+              class="validacion"
+              *ngIf="(frmProducto.controls.ProductoNombre.touched || submitted) &&(frmProducto.controls.ProductoNombre.
+                      errors?.minlength || frmProducto.controls.ProductoNombre.errors?.maxlength)"
+            >
+              El dato debe ser textual y de 5 a 30 caracteres!
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <label class="col-form-label" for="ProductoFechaAlta"
+              >Fecha Alta</label
+            >
+          </div>
+          <div class="col-9">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="ProductoFechaAlta"
+            />
+            <div class="validacion"
+              *ngIf="(frmProducto.controls.ProductoFechaAlta.touched || submitted) && frmProducto.controls.ProductoFechaAlta.errors?.required">
+              Dato Requerido!
+            </div>
+            <div class="validacion"
+              *ngIf="(frmProducto.controls.ProductoFechaAlta.touched || submitted) && frmProducto.controls.ProductoFechaAlta.errors?.pattern">
+              El dato debe ser una fecha con formato DD/MM/YYYY !
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <label class="col-form-label" for="ProductoStock">Stock</label>
+          </div>
+          <div class="col-9">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="ProductoStock"
+            />
+            <div class="validacion"
+              *ngIf="(frmProducto.controls.ProductoStock.touched || submitted) && frmProducto.controls.ProductoStock.errors?.required">
+              Dato Requerido!
+            </div>
+            <div class="validacion"
+              *ngIf="(frmProducto.controls.ProductoStock.touched || submitted) && frmProducto.controls.ProductoStock.errors?.pattern">
+              El dato debe ser numérico del 1 al 999.
+            </div>
+          </div>
+        </div>
+
+        <input
+          name="registrar"
+          id="registrar"
+          class="btn btn-primary"
+          type="button"
+          value="Registrar Producto"
+          (click)="Registrar()"
+        />
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-8 offset-2">
+      <input
+        type="button"
+        class="btn btn-primary"
+        value="Realiza un Alta"
+        (click)="esAlta = !esAlta"
+        *ngIf="!esAlta"
+      />
+      <input
+        type="button"
+        class="btn btn-primary"
+        value="Volver"
+        (click)="esAlta = !esAlta"
+        *ngIf="esAlta"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-8 offset-2">
+      <table
+        class="table table-hover table-sm table-bordered table-striped"
+        *ngIf="!esAlta"
+      >
+        <thead>
+          <tr>
+            <th class="text-center">ID Producto</th>
+            <th class="text-center">Nombre</th>
+            <th class="text-center">Fecha Alta</th>
+            <th class="text-center">Stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prod of Productos">
+            <td>{{prod.ProductoID}}</td>
+            <td>{{prod.ProductoNombre}}</td>
+            <td>{{prod.ProductoFechaAlta}}</td>
+            <td>{{prod.ProductoStock}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

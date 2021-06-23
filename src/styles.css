@@ -1,0 +1,15 @@
+/* Add application styles & imports to this file! */
+#divBody {
+  min-height: 75rem;
+  padding-top: 4.5rem;
+}
+
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+.validacion {
+  color: red;
+  font-size: 0.8em;
+  font-style: italic;
+  padding-left: 1em;
+  padding-bottom: 1em;
+}
